@@ -1,0 +1,41 @@
+{
+  "name" : "schema-excel-001",
+  "jobMode" : "VISUAL",
+  "description" : "",
+  "role" : "arn:aws:iam::590186200215:role/Admin",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-590186200215-us-east-2/scripts/schema-excel-001.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--extra-py-files" : "s3://aws-glue-studio-transforms-523021788118-gamma-us-east-2/misc/openpyxl.zip,s3://aws-glue-studio-transforms-523021788118-gamma-us-east-2/misc/et_xmlfile.zip",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-590186200215-us-east-2/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-590186200215-us-east-2/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 480,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "4.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "codeGenConfigurationNodes" : "{\"node-1746641676191\":{\"ApplyMapping\":{\"Inputs\":[\"node-1746641674727\"],\"Mapping\":[{\"Dropped\":false,\"FromPath\":[\"name\"],\"FromType\":\"string\",\"ToKey\":\"name\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"email\"],\"FromType\":\"string\",\"ToKey\":\"email\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"phone\"],\"FromType\":\"string\",\"ToKey\":\"phone\",\"ToType\":\"string\"},{\"Dropped\":true,\"FromPath\":[\"address\"],\"FromType\":\"string\",\"ToKey\":\"address\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"company\"],\"FromType\":\"string\",\"ToKey\":\"company\",\"ToType\":\"string\"},{\"Dropped\":true,\"FromPath\":[\"text\"],\"FromType\":\"string\",\"ToKey\":\"text\",\"ToType\":\"string\"},{\"Dropped\":true,\"FromPath\":[\"description\"],\"FromType\":\"string\",\"ToKey\":\"description\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"job title\"],\"FromType\":\"string\",\"ToKey\":\"job title\",\"ToType\":\"string\"}],\"Name\":\"Change Schema\"}},\"node-1746641674727\":{\"S3ExcelSource\":{\"AdditionalOptions\":{\"EnableSamplePath\":false,\"SamplePath\":\"s3://jevremd-datasets/test_data.xlsx\"},\"Exclusions\":[],\"Name\":\"Amazon S3\",\"OutputSchemas\":[{\"Columns\":[{\"Name\":\"name\",\"Type\":\"string\"},{\"Name\":\"email\",\"Type\":\"string\"},{\"Name\":\"phone\",\"Type\":\"string\"},{\"Name\":\"address\",\"Type\":\"string\"},{\"Name\":\"company\",\"Type\":\"string\"},{\"Name\":\"text\",\"Type\":\"string\"},{\"Name\":\"description\",\"Type\":\"string\"},{\"Name\":\"job title\",\"Type\":\"string\"}]}],\"Paths\":[\"s3://jevremd-datasets/test_data.xlsx\"],\"Recurse\":true}},\"node-1746641677378\":{\"S3GlueParquetTarget\":{\"AutoDataQuality\":{\"EvaluationContext\":\"EvaluateDataQuality_node1746641630093\",\"IsEnabled\":true},\"Compression\":\"snappy\",\"Inputs\":[\"node-1746641676191\"],\"Name\":\"Amazon S3\",\"NumberTargetPartitions\":\"0\",\"PartitionKeys\":[],\"Path\":\"s3://jevremd-datasets\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false}}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "scs-ipv6-resources-no-dualstack-test",
+    "branch" : "main",
+    "folder" : "schema-excel-001"
+  }
+}
